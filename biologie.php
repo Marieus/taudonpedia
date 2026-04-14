@@ -13,14 +13,11 @@ $especes = $query->fetchAll();
 ?>
 
 <main class="container">
-    <h1>La Biologie</h1>
+    <h1>La <span>Biologie</span></h1>
     <div class="menu"> <?php foreach($especes as $espece): ?>
             <div class="carte">
                 <img src="<?php echo !empty($espece['chemin']) ? $espece['chemin'] : 'images/default.jpg'; ?>" alt="Image de l'espèce">
                 <h3><?php echo htmlspecialchars($espece['nom']); ?></h3>
-                <p><em><?php echo htmlspecialchars($espece['nom_science']); ?></em></p>
-                <p>Type : <?php echo htmlspecialchars($espece['type_nom']); ?></p>
-                <p> <?php echo htmlspecialchars($espece['description']); ?></p>
             </div>
         <?php endforeach; ?>
     </div>
