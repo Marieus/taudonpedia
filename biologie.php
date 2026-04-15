@@ -3,7 +3,7 @@ include 'inc/header.php';
 include 'dbconnect.php'; 
 
 $query = $pdo->query("
-SELECT especes.*, type.nom AS type_nom, photo.chemin
+SELECT especes.*, type.nom AS type_nom, photo.chemin 
 FROM especes
 JOIN type ON especes.id_type = type.id_type
 LEFT JOIN photo ON especes.id_especes = photo.id_especes
@@ -15,20 +15,22 @@ $especes = $query->fetchAll();
 <main class="container">
     <h1>La <span>Biologie</span></h1>
         
-        <form action="biologie.php" method="GET">
-            <input type="text" name="recherche" class="search" placeholder="Cherchez ou décrivez une espèce ici !" >
-            <input type="submit" name="submit" class="submit" value="Rechercher">
-            <p><?php echo htmlspecialchars($_GET['recherche']);?> est le mot recherché</p>
-        </form>
+    <form action="biologie.php" method="GET">
+        <input type="text" name="recherche" class="search" placeholder="Cherchez ou décrivez une espèce ici !" >
+        <input type="submit" name="submit" class="submit" value="Rechercher">
+        <?php if (isset($_GET['recherche'])): ?>
+        <p><?php echo htmlspecialchars($_GET['recherche']);?> est le mot recherché</p>
+        <?php endif; ?>    
+    </form>
 
-        <div class="menu"> <?php foreach($especes as $espece): ?>
+    <div class="menu"> <?php foreach($especes as $espece): ?>
             <a href="fiche_espece.php">
                 <div class="carte">
                     <img src="<?php echo !empty($espece['chemin']) ? $espece['chemin'] : 'images/default.jpg'; ?>" alt="Image de l'espèce">
                     <h3><?php echo htmlspecialchars($espece['nom']); ?></h3>
                 </div>
             </a>
-        <?php endforeach; ?>
+    <?php endforeach; ?>
     </div>
 </main>
 
