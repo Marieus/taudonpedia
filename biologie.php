@@ -14,6 +14,13 @@ $especes = $query->fetchAll();
 
 <main class="container">
     <h1>La <span>Biologie</span></h1>
+        
+        <form action="biologie.php" method="GET">
+            <input type="text" name="recherche" class="search" placeholder="Cherchez ou décrivez une espèce ici !" >
+            <input type="submit" name="submit" class="submit" value="Rechercher">
+            <p><?php echo htmlspecialchars($_GET['recherche']);?> est le mot recherché</p>
+        </form>
+
         <div class="menu"> <?php foreach($especes as $espece): ?>
             <a href="fiche_espece.php">
                 <div class="carte">
