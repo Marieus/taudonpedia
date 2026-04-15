@@ -169,13 +169,11 @@ h2 {
     transition: opacity 0.4s;
 }
 .carte:hover {
-    transform: translateY(-10px);
     border-color: rgba(0, 212, 255, 0.4);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), var(--brillant);
 }
 
 .carte:hover::before {
-    transform: translateY(-10px);
     border-color: rgba(0, 212, 255, 0.4);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), var(--brillant)
 }
@@ -202,9 +200,11 @@ h2 {
     color: var(--biolum);
     transition: 0.1s;
     font-size: 1.2rem;
+
 }
 .carte:hover .explorer{
     opacity: 1;
+    transform: translateX(20px);
 }
 .carte p {
     font-family: arial;
