@@ -2,13 +2,23 @@
 include 'inc/header.php'; 
 include 'dbconnect.php'; 
 
-$query = $pdo->query("
-SELECT especes.*, type.nom AS type_nom, photo.chemin 
-FROM especes
-JOIN type ON especes.id_type = type.id_type
-LEFT JOIN photo ON especes.id_especes = photo.id_especes
-GROUP BY especes.id_especes
-");
+$sql = "SELECT especes.*, type.nom AS type_nom, photo.chemin 
+        FROM especes
+        JOIN type ON especes.id_type = type.id_type
+        LEFT JOIN photo ON especes.id_especes = photo.id_especes";
+
+$params = []; // Tableau qui contiendra nos valeurs sécurisées
+
+if (!empty($_GET['recherche'])) {
+    $sql .= " WHERE especes.nom LIKE :mot OR especes.description LIKE :mot";
+    $params['mot'] = '%' . $_GET['recherche'] . '%';
+}
+
+$sql .= " GROUP BY especes.id_especes";
+
+
+$query = $pdo->prepare($sql);
+$query->execute($params);
 $especes = $query->fetchAll();
 ?>
 

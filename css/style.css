@@ -133,7 +133,7 @@ h2 {
    position: relative;
    margin: 0 auto;
    width: 800px;
-   max-width: 90%;
+   max-width: 80%;
 }
 
 .intro h2{
@@ -254,11 +254,21 @@ footer a:hover {
         width: 90%;
     }
     .intro h1 {
-        visibility: hidden;
+        display: none;
     }
     .menu {
         display: flex;
-        text-align: center;
+        align-items: center;
         flex-direction: column;
+        width: 90%;
+        margin: auto;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .menu p{
+        display: none;
+    }
+    .menu span{
+        display: none;
     }
 }
