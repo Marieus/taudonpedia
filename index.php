@@ -1,9 +1,11 @@
-<?php include 'inc/header.php'; ?>
-<h1>Taudon<span>Pédia</span></h1>
-<h2>Bienvenue sur TaudonPedia, l'Encyclopédie des épaves et des espèces sous marine ! </h2>
-<p id="intro">
-    Ce site, a pour but de répertorier espèces et épaves aperçus durant diverses plongées, si vous avez un doute, vous pouvez vérifier ! 
-</p>
+<?php 
+include 'inc/header.php'; 
+?>
+<div class="intro">
+    <h1>Taudon<span>Pédia</span></h1>
+    <h2>Bienvenue sur TaudonPedia, l'Encyclopédie des épaves et des espèces sous marine ! </h2>
+    <p>Ce site, a pour but de répertorier espèces et épaves aperçus durant diverses plongées, si vous avez un doute, vous pouvez vérifier ! </p>
+</div>    
 <div class="menu">
     <a href="biologie.php" class="carte">
         <img src="images/biologie_bg.jpg" alt="">    
@@ -19,6 +21,7 @@
         <span class="explorer">Explorer →</span>
     </a>  
 </div>
+
 
 
 <?php include 'inc/footer.php'; ?>
