@@ -17,6 +17,7 @@
 html {
     scroll-behavior: smooth;
 }
+
 body::before {
 
     content: "";
@@ -41,7 +42,6 @@ body{
     min-height: 100vh;
     position: relative;
 }
-
 h1 {
     margin-top: 50px;
 }
@@ -133,6 +133,7 @@ h2 {
    position: relative;
    margin: 0 auto;
    width: 800px;
+   max-width: 90%;
 }
 
 .intro h2{
@@ -150,6 +151,7 @@ h2 {
     justify-content: center;
     gap: 50px;
     margin-top: 40px;
+    margin-bottom: 40px;
 
 }
 
@@ -219,4 +221,44 @@ h2 {
     font-family: arial;
     letter-spacing: 0.20em;
     padding: 20px;
+}
+
+footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    padding: 30px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+}
+
+footer a {
+    color: var(--biolum);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+footer a:hover {
+    opacity: 1;
+}
+
+
+@media (max-width: 768px) {
+    .banniere {
+        flex-direction: column;
+    }
+    .intro {
+        width: 90%;
+    }
+    .intro h1 {
+        visibility: hidden;
+    }
+    .menu {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+    }
 }
