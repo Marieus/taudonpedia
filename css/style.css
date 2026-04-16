@@ -127,7 +127,7 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 30px 60px;
-    flex: 1; /* C'est cette ligne qui fait tout le travail pour le footer */
+    flex: 1;
 }
 h1 {
     font-family: 'Cinzel';
@@ -166,8 +166,34 @@ h2 {
     margin-bottom: 40px;
 
 }
-
-
+.menu a{
+    text-decoration: none;
+}
+.barre_recherche{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 25px;
+}
+.search{
+    background: rgba(10, 34, 54, 0.8);
+    height: 20px;
+    border-radius: 25px;
+    width: 100%;
+    padding: 5px;
+    color: aliceblue;
+}
+.submit{
+    background: rgba(10, 34, 54, 0.8);
+    height: 100%;
+    border-radius: 25px;
+    width: 25%;
+    padding: 10px;
+    color: var(--text-muted);
+}
+.search input::placeholder {
+    color: var(--text-muted);
+}
 .carte {
     display: block;
     width: 300px;
@@ -265,7 +291,7 @@ footer a:hover {
     .intro {
         width: 90%;
     }
-    .intro h1 {
+    h1 {
         display: none;
     }
     .menu {
@@ -273,7 +299,7 @@ footer a:hover {
         align-items: center;
         flex-direction: column;
         width: 90%;
-        margin: auto;
+        margin: 20px auto;
         padding-top: 30px;
         padding-bottom: 30px;
     }
@@ -282,5 +308,8 @@ footer a:hover {
     }
     .menu span{
         display: none;
+    }
+    .barre_recherche {
+        margin-top: 100px;
     }
 }
