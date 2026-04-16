@@ -22,7 +22,7 @@ $query->execute($params);
 $especes = $query->fetchAll();
 ?>
 
-<main class="container">
+<div class="contenu">
     <h1>La <span>Biologie</span></h1>
         
     <form action="biologie.php" method="GET">
@@ -42,6 +42,6 @@ $especes = $query->fetchAll();
             </a>
     <?php endforeach; ?>
     </div>
-</main>
+</div>
 
 <?php include 'inc/footer.php'; ?>
