@@ -260,7 +260,10 @@ h2 {
     letter-spacing: 0.20em;
     padding: 20px;
 }
-
+.connexion {
+    display: flex;
+    flex-direction: column;
+}
 footer {
     position: relative;
     z-index: 10;
