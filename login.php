@@ -11,17 +11,20 @@ session_start();
 </head>
 <body>
     <?php
-    include 'dbconnect.php';
+    include 'inc/dbconnect.php';
     $ERR_msg = "";   
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username = $_POST['username'];
         $password = $_POST['password'];
         if($username != "" && $password != ""){
-            $req = $pdo ->query("SELECT * FROM users where pseudo = '$username'");
+            $req = $pdo->prepare("SELECT * FROM users WHERE pseudo = :pseudo");
+            $req->execute(['pseudo' => $username]);
             $rep = $req->fetch();
             if($rep){
                 if(password_verify($password, $rep['password'])) {
-                    echo "Connexion réussie !";
+                    $_SESSION['user_pseudo'] = $rep['pseudo'];
+                    header('Location: admin.php');
+                    exit();
 
                 } else {
                 $ERR_msg = "Mot de passe incorrect";

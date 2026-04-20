@@ -1,6 +1,6 @@
 <?php 
 include 'inc/header.php'; 
-include 'dbconnect.php'; 
+include 'inc/dbconnect.php'; 
 
 $sql = "SELECT especes.*, type.nom AS type_nom, photo.chemin 
         FROM especes
