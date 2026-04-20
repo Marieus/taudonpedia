@@ -14,10 +14,10 @@ session_start();
     include 'dbconnect.php';
     $ERR_msg = "";   
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $user = $_POST['user'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
-        if($user != "" && $password != ""){
-            $req = $pdo ->query("SELECT * FROM users where pseudo = '$user'");
+        if($username != "" && $password != ""){
+            $req = $pdo ->query("SELECT * FROM users where pseudo = '$username'");
             $rep = $req->fetch();
             if($rep){
                 if(password_verify($password, $rep['password'])) {
@@ -34,12 +34,11 @@ session_start();
 
     ?>
     <div class="connexion">
-        <form action="" method="POST" class="barre_recherche">
-            <label for="user">Nom d'utilisateur</label>
-            <input type="user" placeholder="Nom d'utilisateur" id="user" name="user" required >
-            <label for="password">Mot de passe</label>
+        <h2>Connexion</h2>
+        <form action="" method="POST">
+            <input type="username" placeholder="Nom d'utilisateur" id="username" name="username" required >
             <input type="password" placeholder="Mot de passe" id="password" name="password" required >
-            <input type="submit" value="Se Connecter" name="submit" class="submit">
+            <input type="submit" value="Se Connecter" name="submit" class="submit_login">
         </form>
     </div>
     <?php 
