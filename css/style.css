@@ -120,7 +120,7 @@ nav a:hover, nav a.active {
     background: rgba(0, 212, 255, 0.07);
     text-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
 }
-
+/*===== PAGE GENERIQUES ===== */
 main {
     position: relative;
     z-index: 1;
@@ -260,6 +260,8 @@ h2 {
     letter-spacing: 0.20em;
     padding: 20px;
 }
+
+/*===== PAGE DE CONNEXION ===== */
 .connexion {
     display: flex;
     flex-direction: column;
@@ -291,6 +293,123 @@ h2 {
     background-color: #1e293b;
     color: var(--biolum);
 }
+
+/*===== PAGE ADMIN ===== */
+.onglets_admin {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6); /* Fond sombre pour faire ressortir le bleu */
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.onglets_admin h1 {
+    font-family: 'Cinzel', serif;
+    color: var(--biolum);
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: var(--brillant);
+}
+.menu_admin {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    padding-bottom: 15px;
+}
+.menu_admin a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.menu_admin a:hover {
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--biolum);
+}
+.menu_admin a.active {
+    background: var(--biolum);
+    color: #1a1a1a;
+    font-weight: bold;
+    box-shadow: var(--brillant);
+}
+.admin_section {
+    margin-bottom: 20px;
+    text-align: right;
+}
+.btn-ajouter {
+    display: inline-block;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--biolum);
+    border: 1px solid var(--biolum);
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-ajouter:hover {
+    background: var(--biolum);
+    color: #1a1a1a;
+    box-shadow: var(--brillant);
+}
+.panneau_admin {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+}
+.panneau_admin th {
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--biolum);
+    text-align: left;
+    padding: 15px;
+    border-bottom: 2px solid var(--biolum);
+}
+.panneau_admin td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    vertical-align: middle;
+}
+.panneau_admin tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+.panneau_admin img {
+    border-radius: 5px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    object-fit: cover;
+    width: 100px;
+    height: 60px;
+}
+.panneau_admin td a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+.panneau_admin td a:hover {
+    color: var(--biolum);
+    transform: scale(1.2);
+}
+.panneau_admin td a:hover {
+    color: #ff4b2b;
+}
+
+
+
+
+
+
+/*===== FOOTER ===== */
 footer {
     position: relative;
     z-index: 10;

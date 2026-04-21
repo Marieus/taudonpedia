@@ -12,7 +12,7 @@
 <header>
     <div class="banniere">
         <a href="index.php" class="logo">
-            <div class="logo-image"><img src="images\LOGO_COP_300x300.png" alt="logo Caen Plongée"></div>
+            <div class="logo-image"><img src="images/LOGO_COP_300x300.png" alt="logo Caen Plongée"></div>
             <div class="logo-texte">Taudon<span>Pédia</span></div>
         </a>
         <nav>
