@@ -37,7 +37,16 @@ include 'inc/dbconnect.php';
 $onglet = isset($_GET['onglet']) ? $_GET['onglet'] : 'photo';
 
 if ($onglet == 'photo') {
-    $req = $pdo->query("SELECT * FROM photo ORDER BY id_photo DESC");
+    $req = $pdo->query("
+        SELECT photo.*, 
+               photographe.nom AS nom_photographe, 
+               especes.nom AS nom_especes, 
+               lieu.nom AS nom_lieu
+        FROM photo 
+        LEFT JOIN photographe ON photo.id_photographe = photographe.id_photographe
+        LEFT JOIN especes ON photo.id_especes = especes.id_especes
+        LEFT JOIN lieu ON photo.id_lieu = lieu.id_lieu
+        ORDER BY photo.id_photo DESC");
 } else if ($onglet == 'especes') {
     $req = $pdo->query("SELECT * FROM especes ORDER BY id_especes DESC");
 } else if ($onglet == 'lieu') {
@@ -50,15 +59,9 @@ $donnees = $req->fetchAll();
 <main class='onglets_admin'>
     <h1> Panel Admin </h1>
     <div class="menu_admin">
-        <a href="admin.php?onglet=photo" class="<?php echo ($onglet == 'photo') ? 'active' : ''; ?>">
-            <i class="fa-regular fa-image"></i> Galerie Photos
-        </a>
-        <a href="admin.php?onglet=especes" class="<?php echo ($onglet == 'especes') ? 'active' : ''; ?>">
-            <i class="fa-solid fa-fish"></i> Espèces (Bio)
-        </a>
-        <a href="admin.php?onglet=lieu" class="<?php echo ($onglet == 'lieu') ? 'active' : ''; ?>">
-            <i class="fa-solid fa-ship"></i> Épaves
-        </a>
+        <a href="admin.php?onglet=photo" class="<?php echo ($onglet == 'photo') ? 'active' : ''; ?>">Photo</a>
+        <a href="admin.php?onglet=especes" class="<?php echo ($onglet == 'especes') ? 'active' : ''; ?>"> Espèces</a>
+        <a href="admin.php?onglet=lieu" class="<?php echo ($onglet == 'lieu') ? 'active' : ''; ?>">Lieu </a>
     </div>
     <div class="admin_section">
         <a href="ajouter_<?php echo $onglet; ?>.php" class="btn-ajouter">
@@ -69,8 +72,14 @@ $donnees = $req->fetchAll();
         <thead>
             <?php if($onglet == 'photo'): ?>
                 <tr>
-                    <th>Aperçu</th>
+                    <th>Photo</th>
+                    <th>Chemin</th>
+                    <th>Photographe</th>
+                    <th>Date</th>
+                    <th>Espèce</th>
+                    <th>Lieu</th>
                     <th>Actions</th>
+                    
                 </tr>
             <?php elseif($onglet == 'especes'): ?>
                 <tr>
@@ -93,6 +102,11 @@ $donnees = $req->fetchAll();
                 <tr>
                     <?php if($onglet == 'photo'): ?>
                         <td><img src="./<?php echo $d['chemin'] ?>" ></td>
+                        <td><p><?php echo $d['chemin'] ?></p></td>
+                        <td><p><?php echo $d['nom_photographe'] ?></p></td>
+                        <td><p><?php echo $d['date_photo'] ?></p></td>
+                        <td><p><?php echo $d['nom_especes'] ?></p></td>
+                        <td><p><?php echo $d['nom_lieu'] ?></p></td>
                     <?php elseif($onglet == 'especes'): ?>
                         <td><?php echo htmlspecialchars($d['nom']); ?></td>
                         <td><?php echo htmlspecialchars($d['nom_science']); ?></td>
