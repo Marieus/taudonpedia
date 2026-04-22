@@ -39,7 +39,6 @@ body::before {
 body{
     display: flex;
     flex-direction: column;
-
     color: aliceblue;
     text-align: center;
     min-height: 100vh;

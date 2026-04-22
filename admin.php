@@ -38,30 +38,46 @@ $onglet = isset($_GET['onglet']) ? $_GET['onglet'] : 'photo';
 
 if ($onglet == 'photo') {
     $req = $pdo->query("
-        SELECT photo.*, 
-               photographe.nom AS nom_photographe, 
-               especes.nom AS nom_especes, 
-               lieu.nom AS nom_lieu
+        SELECT photo.*, photographe.nom AS nom_photographe, especes.nom AS nom_especes, lieu.nom AS nom_lieu
         FROM photo 
         LEFT JOIN photographe ON photo.id_photographe = photographe.id_photographe
         LEFT JOIN especes ON photo.id_especes = especes.id_especes
         LEFT JOIN lieu ON photo.id_lieu = lieu.id_lieu
         ORDER BY photo.id_photo DESC");
 } else if ($onglet == 'especes') {
-    $req = $pdo->query("SELECT * FROM especes ORDER BY id_especes DESC");
+    $req = $pdo->query("
+    SELECT especes.*, type.nom AS nom_type
+    FROM especes 
+    LEFT JOIN type ON especes.id_type = type.id_type
+    ORDER BY especes.id_especes DESC");
 } else if ($onglet == 'lieu') {
-    $req = $pdo->query("SELECT * FROM lieu ORDER BY id_lieu DESC");
-}
+    $req = $pdo->query("
+    SELECT * 
+    FROM lieu 
+    ORDER BY id_lieu DESC");
+} else if ($onglet == 'photographe') {
+    $req = $pdo->query("
+    SELECT * 
+    FROM photographe 
+    ORDER BY id_photographe DESC");
+} else if ($onglet == 'type') {
+    $req = $pdo->query("
+    SELECT * 
+    FROM type 
+    ORDER BY id_type DESC");
+} 
 
 $donnees = $req->fetchAll();
 ?>
 
 <main class='onglets_admin'>
-    <h1> Panel Admin </h1>
+    <h1>Administration</h1>
     <div class="menu_admin">
         <a href="admin.php?onglet=photo" class="<?php echo ($onglet == 'photo') ? 'active' : ''; ?>">Photo</a>
-        <a href="admin.php?onglet=especes" class="<?php echo ($onglet == 'especes') ? 'active' : ''; ?>"> Espèces</a>
-        <a href="admin.php?onglet=lieu" class="<?php echo ($onglet == 'lieu') ? 'active' : ''; ?>">Lieu </a>
+        <a href="admin.php?onglet=especes" class="<?php echo ($onglet == 'especes') ? 'active' : ''; ?>">Espèces</a>
+        <a href="admin.php?onglet=lieu" class="<?php echo ($onglet == 'lieu') ? 'active' : ''; ?>">Lieu</a>
+        <a href="admin.php?onglet=photographe" class="<?php echo ($onglet == 'photographe') ? 'active' : ''; ?>">Photographe</a>
+        <a href="admin.php?onglet=type" class="<?php echo ($onglet == 'type') ? 'active' : ''; ?>">Famille</a>
     </div>
     <div class="admin_section">
         <a href="ajouter_<?php echo $onglet; ?>.php" class="btn-ajouter">
@@ -84,13 +100,30 @@ $donnees = $req->fetchAll();
             <?php elseif($onglet == 'especes'): ?>
                 <tr>
                     <th>Nom</th>
-                    <th>Famille</th>
+                    <th>Nom Scientifique</th>               
+                    <th>Description</th>               
+                    <th>Couleur</th>               
+                    <th>Type</th>               
                     <th>Actions</th>
                 </tr>
             <?php elseif($onglet == 'lieu'): ?>
                 <tr>
                     <th>Nom</th>
-                    <th>Modèle</th>
+                    <th>Coordonnées</th>
+                    <th>Profondeur</th>
+                    <th>Actions</th>
+                </tr>
+            <?php elseif($onglet == 'photographe'): ?>
+                <tr>
+                    <th>Nom</th>
+                    <th>Âge</th>
+                    <th>Niveau</th>
+                    <th>Materiel</th>
+                    <th>Actions</th>
+                </tr>
+            <?php elseif($onglet == 'type'): ?>
+                <tr>
+                    <th>Nom</th>
                     <th>Actions</th>
                 </tr>
             <?php endif; ?>
@@ -110,9 +143,20 @@ $donnees = $req->fetchAll();
                     <?php elseif($onglet == 'especes'): ?>
                         <td><?php echo htmlspecialchars($d['nom']); ?></td>
                         <td><?php echo htmlspecialchars($d['nom_science']); ?></td>
+                        <td><?php echo htmlspecialchars($d['description']); ?></td>
+                        <td><?php echo htmlspecialchars($d['couleur']); ?></td>
+                        <td><?php echo htmlspecialchars($d['nom_type']); ?></td>
                     <?php elseif($onglet == 'lieu'): ?>
                         <td><?php echo htmlspecialchars($d['nom']); ?></td>
                         <td><?php echo htmlspecialchars($d['coordonnees']); ?></td>
+                        <td>- <?php echo htmlspecialchars($d['profondeur']); ?> m</td>
+                    <?php elseif($onglet == 'photographe'): ?>
+                        <td><?php echo htmlspecialchars($d['nom']); ?></td>
+                        <td><?php echo htmlspecialchars($d['age']); ?></td>
+                        <td><?php echo htmlspecialchars($d['niveau']); ?></td>
+                        <td><?php echo htmlspecialchars($d['materiel']); ?></td>
+                    <?php elseif($onglet == 'type'): ?>
+                        <td><?php echo htmlspecialchars($d['nom']); ?></td>
                     <?php endif; ?>
                         <td>
                             <a href="modifier.php?type=<?php echo $onglet; ?>&id=<?php echo $d['id_'.$onglet]; ?>">
