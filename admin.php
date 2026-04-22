@@ -38,12 +38,12 @@ $onglet = isset($_GET['onglet']) ? $_GET['onglet'] : 'photo';
 
 if ($onglet == 'photo') {
     $req = $pdo->query("
-        SELECT photo.*, photographe.nom AS nom_photographe, especes.nom AS nom_especes, lieu.nom AS nom_lieu
-        FROM photo 
-        LEFT JOIN photographe ON photo.id_photographe = photographe.id_photographe
-        LEFT JOIN especes ON photo.id_especes = especes.id_especes
-        LEFT JOIN lieu ON photo.id_lieu = lieu.id_lieu
-        ORDER BY photo.id_photo DESC");
+    SELECT photo.*, photographe.nom AS nom_photographe, especes.nom AS nom_especes, lieu.nom AS nom_lieu
+    FROM photo 
+    LEFT JOIN photographe ON photo.id_photographe = photographe.id_photographe
+    LEFT JOIN especes ON photo.id_especes = especes.id_especes
+    LEFT JOIN lieu ON photo.id_lieu = lieu.id_lieu
+    ORDER BY photo.id_photo DESC");
 } else if ($onglet == 'especes') {
     $req = $pdo->query("
     SELECT especes.*, type.nom AS nom_type
